@@ -7,5 +7,13 @@ module.exports = {
   ignorePatterns: ['dist/**/*'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
-  root: true
+  root: true,
+  overrides:  [
+    {
+      "files": ["**/*.spec.*"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 };

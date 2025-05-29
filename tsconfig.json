@@ -12,7 +12,8 @@
     "types": [
       "lua-types/5.1",
       "@asledgehammer/pipewrench",
-      "@asledgehammer/pipewrench-events"
+      "@asledgehammer/pipewrench-events",
+      "jest"
     ]
   },
   "tstl": {
@@ -25,5 +26,6 @@
       }
     ]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/*.spec.*"],
 }
