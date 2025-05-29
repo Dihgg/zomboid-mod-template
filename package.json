@@ -2,18 +2,61 @@
   "name": "zomboid-mod-template",
   "version": "0.0.1",
   "scripts": {
+    "build": "tstl",
+    "clean": "rimraf dist",
+    "check": "prettier --check . && eslint .",
+    "lint": "prettier --write . && eslint .",
+    "watch": "tstl --watch --outDir ~/Zomboid/mods",
     "release": "standard-version",
     "postrelease": "node scripts/steam.js",
     "zipname": "node scripts/zipname.js"
   },
-  "keywords": [],
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts,js,jsx,lua,json,png"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dihgg/zomboid-mod-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dihgg/zomboid-mod-template/issues"
+  },
+  "homepage": "https://github.com/dihgg/zomboid-mod-template.git#readme",
+  "keywords": [
+    "zomboid", "mod", "pipewrench"
+  ],
   "author": "Diego Lopes <dihgg@dihgg.com>",
   "license": "ISC",
   "description": "A mod Template for Zomboid mods",
   "devDependencies": {
+    "@asledgehammer/pipewrench": "^41.78.18",
+    "@asledgehammer/pipewrench-events": "^41.73.0",
+    "@asledgehammer/tstl-pipewrench": "^41.78.19",
+    "@types/fs-extra": "11.0.4",
+    "@typescript-eslint/eslint-plugin": "7.16.0",
+    "@typescript-eslint/parser": "7.16.0",
     "archiver": "^7.0.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "fs-extra": "^11.3.0",
+    "latest": "^0.2.0",
+    "lua-types": "^2.13.1",
     "micromatch": "^4.0.8",
-    "standard-version": "^9.5.0"
+    "npm-watch": "^0.11.0",
+    "prettier": "3.3.2",
+    "prettier-eslint": "16.3.0",
+    "rimraf": "^6.0.1",
+    "standard-version": "^9.5.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.5.2",
+    "typescript-to-lua": "^1.26.0"
   }
 }
