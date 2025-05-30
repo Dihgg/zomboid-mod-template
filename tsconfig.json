@@ -14,7 +14,8 @@
       "@asledgehammer/pipewrench",
       "@asledgehammer/pipewrench-events",
       "jest"
-    ]
+    ],
+    "paths": {}
   },
   "tstl": {
     "luaLibImport": "require",
@@ -27,5 +28,5 @@
     ]
   },
   "include": ["src"],
-  "exclude": ["**/*.spec.*"],
+  "exclude": ["**/*.spec.*"]
 }
