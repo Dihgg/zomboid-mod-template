@@ -17,10 +17,10 @@ module.exports = {
   // modulePaths: ['./<rootDir>', 'node_modules'],
   // moduleDirectories: ['./<rootDir>', 'node_modules'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: "<rootDir>" }),
-  coverageDirectory: '../coverage',
+  coverageDirectory: './coverage',
   moduleFileExtensions: ['js', 'json', 'ts', 'd.ts', 'node'],
   testRegex: '.*\\.spec\\.ts$',
-  collectCoverageFrom: ['**/*.(t|j)s'],
+  collectCoverageFrom: ['src/**/*.(t|j)s'],
   transformIgnorePatterns: [
     // '/node_modules/(?!<module-name>).+\\.js$',
   ],

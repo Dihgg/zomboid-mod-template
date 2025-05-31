@@ -20,7 +20,7 @@ import { TSUIRedSquare } from './TSUIRedSquare';
  * @returns A string of the object's name, x, y, and z coordinates.
  */
 export function isoObjectToString(object: IsoObject): string {
-  return `{name: ${object.getObjectName()}, x: ${object.getX()}, y: ${object.getY()}, z: ${object.getZ()}}`;
+  return `{"name": "${object.getObjectName()}", "x": "${object.getX()}", "y": "${object.getY()}", "z": "${object.getZ()}"}`;
 }
 
 /**
@@ -35,15 +35,4 @@ export function addRedSquare() {
  */
 export function greetPlayer(player: IsoPlayer) {
   print(`Hello, ${player.getFullName()}!`);
-}
-
-/**
- * Registers the 'OnObjectAdded' Lua event and prints objects that are added to the world.
- */
-export function alertObjectsAdded() {
-  Events.onObjectAdded.addListener((object: IsoObject) => {
-    if (object != null) {
-      print(`IsoObject added: ${isoObjectToString(object)}`);
-    }
-  });
 }

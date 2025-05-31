@@ -13,7 +13,8 @@
       "lua-types/5.1",
       "@asledgehammer/pipewrench",
       "@asledgehammer/pipewrench-events",
-      "jest"
+      "jest",
+      "node"
     ],
     "paths": {}
   },

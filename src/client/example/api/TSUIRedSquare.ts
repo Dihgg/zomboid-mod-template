@@ -3,6 +3,8 @@ import { ISUIElement } from '@asledgehammer/pipewrench/client';
 export class TSUIRedSquare extends ISUIElement {
   constructor(x: number, y: number, width: number, height: number) {
     super(x, y, width, height);
+    console.log('aaaa', this);
+    
     this.initialise();
     this.instantiate();
     this.addToUIManager();
