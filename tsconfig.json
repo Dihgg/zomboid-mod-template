@@ -9,11 +9,14 @@
     "rootDir": "src",
     "strict": true,
     "target": "ESNext",
+    "baseUrl": "./src/",
     "types": [
       "lua-types/5.1",
       "@asledgehammer/pipewrench",
-      "@asledgehammer/pipewrench-events"
-    ]
+      "@asledgehammer/pipewrench-events",
+      "jest"
+    ],
+    "paths": {}
   },
   "tstl": {
     "luaLibImport": "require",
@@ -25,5 +28,6 @@
       }
     ]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/*.spec.*"]
 }

@@ -10,11 +10,10 @@
 import { getPlayer } from '@asledgehammer/pipewrench';
 import * as Events from '@asledgehammer/pipewrench-events';
 // Example reference API.
-import { addRedSquare, alertObjectsAdded, greetPlayer } from './api/ExampleAPI';
+import { addRedSquare, greetPlayer } from './api/ExampleAPI';
 
 // Add all initialization code here.
 Events.onGameStart.addListener(() => {
   addRedSquare();
   greetPlayer(getPlayer());
-  alertObjectsAdded();
 });
