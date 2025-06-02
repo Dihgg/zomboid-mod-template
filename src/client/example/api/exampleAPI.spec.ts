@@ -2,13 +2,6 @@ import { IsoObject, IsoPlayer } from '@asledgehammer/pipewrench';
 import {addRedSquare, greetPlayer, isoObjectToString} from './ExampleAPI';
 import {mock} from 'jest-mock-extended';
 import * as TSUIRedSquareSpy from './TSUIRedSquare';
-import * as EventsSpy from '@asledgehammer/pipewrench-events';
-
-jest.mock("@asledgehammer/pipewrench-events", () => ({
-	onObjectAdded: {
-		addListener: jest.fn()
-	}
-}));
 
 jest.mock("./TSUIRedSquare");
 

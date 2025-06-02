@@ -1,18 +1,19 @@
-
-import { ISUIElement } from "@asledgehammer/pipewrench/client";
 import { TSUIRedSquare } from "./TSUIRedSquare";
-// import { mock } from "jest-mock-extended";
 
-//jest.mock("@asledgehammer/pipewrench/client");
+jest.mock('@asledgehammer/pipewrench/client');
 
-describe.only("TSUIRedSquare", () => {
-	//jest.spyOn(ISUIElementSpy.ISUIElement, '')
+describe("TSUIRedSquare", () => {
 	it("should instantiate", () => {
-		console.log('aa', ISUIElement.mock);
-		
-		const spy = jest.spyOn(ISUIElement.prototype, 'drawRect');
-		const element = new TSUIRedSquare(0,0,0,0);
-		element.drawRedSquare();
-		expect(spy).toHaveBeenCalled();
+		const element = new TSUIRedSquare(1, 2, 3, 4);
+		expect(element.initialise).toHaveBeenCalled();
+		expect(element.instantiate).toHaveBeenCalled();
+		expect(element.addToUIManager).toHaveBeenCalled();
+		expect(element.setVisible).toHaveBeenCalledWith(true);
+	});
+	
+	it("should render a red square", () => {
+		const element = new TSUIRedSquare(1, 2, 3, 4);
+		element.render();
+		expect(element.drawRect).toHaveBeenCalledWith(1, 2, 3, 4, 1, 1.0, 0.0, 0.0);
 	});
 })
