@@ -1,6 +1,7 @@
-const fs = require('fs-extra');
-const path = require('path');
-const micromatch = require('micromatch');
+const { readdirSync, copySync } = require('fs-extra');
+const { join } = require('path');
+const { isMatch } = require('micromatch');
+const { getInfo } = require('./info');
 
 const EXCLUDE_PATTERNS = [
     'node_modules',
@@ -16,18 +17,20 @@ const EXCLUDE_PATTERNS = [
 ];
 
 function shouldInclude(filePath) {
-    return !micromatch.isMatch(filePath, EXCLUDE_PATTERNS);
+    return !isMatch(filePath, EXCLUDE_PATTERNS);
 }
 
 async function generateZippedFiles(outputDir) {
     // Copy files directly into the output directory
-    const files = fs.readdirSync(process.cwd());
+    const { id } = getInfo();
+    const distPath = join(process.cwd(), 'dist', id);
+    const files = readdirSync(distPath);
     files
         .filter(shouldInclude)
         .forEach(file => {
-            const srcPath = path.join(process.cwd(), file);
-            const destPath = path.join(outputDir, file);
-            fs.copySync(srcPath, destPath);
+            const srcPath = join(distPath, file);
+            const destPath = join(outputDir, file);            
+            copySync(srcPath, destPath);
         });
 }
 

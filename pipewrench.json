@@ -1,0 +1,14 @@
+{
+  "modInfo": {
+    "id": "modId",
+    "name": "Zomboid Mod Example",
+    "description": "this is a zomboid example (using pipewrench)",
+    "url": "https://github.com/Dihgg/zomboid-mod-template",
+    "poster": "./poster.png",
+    "require": ["required-mod-id"]
+  },
+  "modelsDir": "./src/models",
+  "texturesDir": "./src/textures",
+  "soundDir": "./src/sound",
+  "scriptsDir": "./src/scripts"
+}
