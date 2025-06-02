@@ -1,9 +1,9 @@
-const fs = require('fs-extra');
-const path = require('path');
-const packageJsonPath = path.join(process.cwd(), 'package.json');
-const { name, version } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+const { getInfo } = require('./info');
 
-const getZipName = () => `${name}-${version}.zip`;
+const getZipName = () => {
+    const {name, version} = getInfo()
+    return `${name}-${version}.zip`;
+};
 
 module.exports = {
     getZipName

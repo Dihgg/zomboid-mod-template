@@ -8,7 +8,9 @@
     "lint": "prettier --write . && eslint .",
     "watch": "tstl --watch --outDir ~/Zomboid/mods",
     "release": "standard-version",
-    "postrelease": "node scripts/steam.js",
+    "postrelease": "npm run zip",
+    "zip": "node scripts/zipper.js",
+    "steam": "node scripts/steam.js",
     "zipname": "node scripts/zipname.js",
     "test": "jest",
     "coverage": "jest --coverage"
