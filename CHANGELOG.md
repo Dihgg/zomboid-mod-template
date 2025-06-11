@@ -4,17 +4,15 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 0.0.2 (2025-06-02)
 
-
 ### Features
 
-* **tooling:** adding jest ([4cddef7](https://github.com/dihgg/zomboid-mod-template/commit/4cddef7a8b7ed16a9f6e38b35a8d2e8b6e80e676))
-* **tooling:** adding pipwrench to project ([6c3a342](https://github.com/dihgg/zomboid-mod-template/commit/6c3a34273078f39d15287b4e047aa203aaac1083))
-* **tooling:** adding zip scripts ([9461840](https://github.com/dihgg/zomboid-mod-template/commit/94618407321eb7b55ce14c5006f3ef8016e43009))
-
+-   **tooling:** adding jest ([4cddef7](https://github.com/dihgg/zomboid-mod-template/commit/4cddef7a8b7ed16a9f6e38b35a8d2e8b6e80e676))
+-   **tooling:** adding pipwrench to project ([6c3a342](https://github.com/dihgg/zomboid-mod-template/commit/6c3a34273078f39d15287b4e047aa203aaac1083))
+-   **tooling:** adding zip scripts ([9461840](https://github.com/dihgg/zomboid-mod-template/commit/94618407321eb7b55ce14c5006f3ef8016e43009))
 
 ### Bug Fixes
 
-* **tooling:** fixing tsconfig for tstl ([3d23c45](https://github.com/dihgg/zomboid-mod-template/commit/3d23c457f6d02eaca424570a81052a4fdeeacd88))
+-   **tooling:** fixing tsconfig for tstl ([3d23c45](https://github.com/dihgg/zomboid-mod-template/commit/3d23c457f6d02eaca424570a81052a4fdeeacd88))
 
 # Changelog
 
