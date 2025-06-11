@@ -1,18 +1,18 @@
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/eslint-recommended'
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
   ],
-  ignorePatterns: ['dist/**/*'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  ignorePatterns: ["dist/**/*", "scripts/", "jest.config.js"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
   root: true,
-  overrides:  [
+  overrides: [
     {
-      "files": ["**/*.spec.*"],
-      "env": {
-        "jest": true
+      files: ["**/*.spec.*"],
+      env: {
+        jest: true
       }
     }
   ]

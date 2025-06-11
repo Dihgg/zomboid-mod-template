@@ -1,53 +1,50 @@
-const {ensureDirSync, existsSync, readdirSync, copySync, createWriteStream, removeSync} = require('fs-extra');
-const { join } = require('path');
-const { tmpdir } = require('os');
-const archiver = require('archiver');
-const { generateZippedFiles, getZipName, getInfo, removeDSStore } = require('./utils');
+const fs = require("fs-extra");
+const path = require("path");
+const os = require("os");
+const archiver = require("archiver");
+const { copyFolder, getInfo } = require("./utils");
 
+/**
+ * Creates a zip for steam workshop
+ */
 async function prepareSteamZip() {
-    const { name } = getInfo()
-    const tempDir = join(tmpdir(), `${name}-steam-temp`);
-    const projectFolder = join(tempDir, name); // Root folder for the project
-    const contentsFolder = join(projectFolder, 'contents');
-    const modsFolder = join(contentsFolder, 'mods', name); // Place mods inside contents
-    const outputZip = getZipName();
+	const { name, zipname } = getInfo();
+	const tempPath = path.join(os.tmpdir(), `${name}-temp`);
+	// steam workshop expectets the following structure mod-name/contents/mods/mod-name
+	const modPath = path.join(tempPath, "contents", "mods");
 
-    // Ensure folder structure in temp directory
-    ensureDirSync(modsFolder);
+	// Ensure folder structure in temp directory
+	fs.ensureDirSync(modPath);
 
-    // Generate files using zipper.js directly into the mods folder
-    await generateZippedFiles(modsFolder);
+	// Copy items from the source contents folder to the generated contents folder
+	await copyFolder(
+		path.join(process.cwd(), "contents"),
+		tempPath
+	);
 
-    // Copy items from the source contents folder to the generated contents folder
-    const originalContentsFolder = join(process.cwd(), 'contents');
-    if (existsSync(originalContentsFolder)) {
-        readdirSync(originalContentsFolder).forEach(file => {
-            const srcPath = join(originalContentsFolder, file);
-            const destPath = join(projectFolder, file);
-            copySync(srcPath, destPath);
-        });
-    }
+	// Copy mod files to the expected modPath
+	await copyFolder(
+		path.join(process.cwd(), "dist"),
+		modPath
+	);
 
-    // Remove .DS_Store files from the temp directory
-    removeDSStore(tempDir);
+	// Create zip
+	const finalZipName = zipname.replace(".zip", "-steam.zip");
+	const output = fs.createWriteStream(finalZipName);
+	const archive = archiver("zip", { zlib: { level: 9 } });
 
-    // Create zip
-    const output = createWriteStream(outputZip);
-    const archive = archiver('zip', { zlib: { level: 9 } });
+	output.on("close", () => {
+		console.info(`${finalZipName} has been created.`);
+	});
 
-    output.on('close', () => {
-        console.info(`${outputZip} has been created.`);
-    });
+	archive.pipe(output);
+	archive.directory(tempPath, name);
+	await archive.finalize();
 
-    archive.pipe(output);
-    archive.directory(projectFolder, name); // Include the project folder as the root
-    await archive.finalize();
-
-    // Clean up temporary folders
-    removeSync(tempDir);
+	fs.removeSync(tempPath);
 }
 
 prepareSteamZip()
 .catch(err => {
-    console.error('Error preparing Steam zip file:', err);
+	console.error("Error preparing Steam zip file:", err);
 });
