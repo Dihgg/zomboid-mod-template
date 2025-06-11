@@ -1,9 +1,9 @@
 {
 	"modInfo": {
 		"id": "zomboid-mod-template",
-		"name": "Naninhas",
+		"name": "zomboid-mod-template",
 		"description": "this is a zomboid example (using pipewrench)",
-		"url": "https://github.com/Dihgg/naninhas",
+		"url": "https://github.com/Dihgg/zomboid-mod-template",
 		"poster": "./poster.png",
 		"require": ["required-mod"]
 	},
