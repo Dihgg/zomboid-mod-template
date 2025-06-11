@@ -1,6 +1,6 @@
 {
 	"name": "zomboid-mod-template",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"scripts": {
 		"prebuild": "npm run clean",
 		"build": "tstl",
