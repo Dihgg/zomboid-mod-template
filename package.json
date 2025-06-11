@@ -1,8 +1,8 @@
 {
-  "name": "zomboid-mod-template",
-  "version": "0.0.2",
-  "scripts": {
-    "prebuild": "npm run clean",
+	"name": "zomboid-mod-template",
+	"version": "0.0.2",
+	"scripts": {
+		"prebuild": "npm run clean",
 		"build": "tstl",
 		"postbuild": "node scripts/postbuild.js",
 		"clean": "rimraf dist",
@@ -16,33 +16,33 @@
 		"zipname": "node scripts/zipname.js",
 		"test": "jest",
 		"coverage": "npm run test -- --coverage"
-  },
-  "watch": {
-    "build": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "ts,js,jsx,lua,json,png"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dihgg/zomboid-mod-template.git"
-  },
-  "bugs": {
-    "url": "https://github.com/dihgg/zomboid-mod-template/issues"
-  },
-  "homepage": "https://github.com/dihgg/zomboid-mod-template.git#readme",
-  "keywords": [
-    "zomboid",
-    "mod",
-    "pipewrench"
-  ],
-  "author": "Diego Lopes <dihgg@dihgg.com>",
-  "license": "ISC",
-  "description": "A mod Template for Zomboid mods",
-  "devDependencies": {
-    "@asledgehammer/pipewrench": "^41.78.18",
+	},
+	"watch": {
+		"build": {
+			"patterns": [
+				"src"
+			],
+			"extensions": "ts,js,jsx,lua,json,png"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dihgg/zomboid-mod-template.git"
+	},
+	"bugs": {
+		"url": "https://github.com/dihgg/zomboid-mod-template/issues"
+	},
+	"homepage": "https://github.com/dihgg/zomboid-mod-template.git#readme",
+	"keywords": [
+		"zomboid",
+		"mod",
+		"pipewrench"
+	],
+	"author": "Diego Lopes <dihgg@dihgg.com>",
+	"license": "ISC",
+	"description": "A mod Template for Zomboid mods",
+	"devDependencies": {
+		"@asledgehammer/pipewrench": "^41.78.18",
 		"@asledgehammer/pipewrench-events": "^41.73.0",
 		"@asledgehammer/tstl-pipewrench": "^41.78.19",
 		"@jest/globals": "^29.0.0",
@@ -73,5 +73,5 @@
 		"ts-node": "^10.9.1",
 		"typescript": "^5.5.2",
 		"typescript-to-lua": "^1.26.0"
-  }
+	}
 }
