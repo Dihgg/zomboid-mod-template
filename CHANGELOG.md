@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/dihgg/zomboid-mod-template/compare/v0.0.7...v0.0.8) (2026-06-02)
+
+
+### Features
+
+* **template:** updating mod-template with scripts and mocks ([265916a](https://github.com/dihgg/zomboid-mod-template/commit/265916a849374c15b6226c19631d0da6a42a73ef))
+
 ### [0.0.7](https://github.com/dihgg/zomboid-mod-template/compare/v0.0.6...v0.0.7) (2025-06-11)
 
 
