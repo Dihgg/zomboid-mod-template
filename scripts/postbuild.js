@@ -1,46 +1,58 @@
 const path = require("path");
-const { copyFolder, getInfo } = require("./utils");
+const fs = require("fs-extra");
+const { srcPath, distPath, copyFolder, moveFolder, getInfo, patchPipeWrenchLua } = require("./utils");
 
-/**
- * returns the src Path for this operation
- * @param {string} dirPath
- * @returns {string}
- */
-const srcPath = dirPath => path.join(process.cwd(), ...dirPath.split("/"));
+const copyBuild42JsonTranslations = async (outputPath, locale = "EN") => {
+	const sourceDir = srcPath(`src/translations-json/${locale}`);
+	if (!(await fs.pathExists(sourceDir))) {
+		console.info(`No src/translations-json/${locale} found; skipping Build 42 json translations.`);
+		return;
+	}
 
-/**
- * returns the dist path (inside media) for this operation
- * @param {string} dirPath
- * @param {boolean} media should include the media folder in destPath ?
- * @returns {string}
- */
-const distPath = (dirPath, media = true) => {
-	const { name } = getInfo();
-	return path.join(process.cwd(), "dist", name, media ? "media" : "", ...dirPath.split("/"));
+	await fs.ensureDir(path.join(outputPath, locale));
+	const translationFiles = await fs.readdir(sourceDir);
+
+	for (const file of translationFiles) {
+		const json = await fs.readJSON(path.join(sourceDir, file));
+		const sortedTranslations = new Map(Object.entries(json).sort());
+		await fs.writeJson(path.join(outputPath, locale, file), Object.fromEntries(sortedTranslations), { spaces: 4 });
+	}
+
+	console.info(`${locale} Build 42 translations copied successfully.`);
 };
 
-// Copy ui folder to dist
-copyFolder(srcPath("src/ui"), distPath("ui"))
-	.then(() => {
-		console.info("ui folder copied successfully.");
-	})
-	.catch(err => {
-		console.error("Error copying ui folder:", err);
-	});
+const run = async () => {
+	try {
+		const { id } = getInfo();
 
-// Copy translations to dist
-copyFolder(srcPath("src/translations"), distPath("lua/shared/Translate"))
-	.then(() => {
-		console.info("Translations folder copied successfully.");
-	})
-	.catch(err => {
-		console.error("Error copying translations folder:", err);
-	});
+		const generatedDistPath = path.join(process.cwd(), "dist", id);
+		if (generatedDistPath !== distPath()) {
+			await moveFolder(generatedDistPath, distPath());
+		} else {
+			console.warn(`Generated dist path ${generatedDistPath} is the same as target dist path ${distPath()}. Skipping move.`);
+		}
 
-copyFolder(srcPath("src/root"), distPath("", false))
-	.then(() => {
-		console.info("copy root folder copied successfully.");
-	})
-	.catch(err => {
-		console.error("Error copying root folder:", err);
-	});
+		await copyFolder(srcPath("src/root"), distPath());
+		await copyFolder(srcPath("src/root"), distPath("42"));
+
+		if (await fs.pathExists(distPath("mod.info"))) {
+			await fs.copy(distPath("mod.info"), distPath("42/mod.info"));
+		}
+
+		if (await fs.pathExists(distPath("media"))) {
+			await moveFolder(distPath("media"), distPath("42/media"));
+		}
+
+		await copyFolder(srcPath("src/media"), distPath("42/media"));
+		await copyFolder(srcPath("src/ui"), distPath("42/media/ui"));
+		await copyBuild42JsonTranslations(distPath("42/media/lua/shared/Translate"));
+
+		await patchPipeWrenchLua(distPath("42"));
+		console.info("PipeWrench Lua files patched.");
+	} catch (err) {
+		console.error("Error copying files:", err);
+		process.exitCode = 1;
+	}
+};
+
+run();
